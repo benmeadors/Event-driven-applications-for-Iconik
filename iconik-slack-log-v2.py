@@ -60,36 +60,6 @@ slack_template = """{
 }"""
 
 
-webhook = {
-  "system_domain_id": "562b6dc8-9c3e-11e9-93c5-0a580a3d829b",
-  "object_id": "ff93508c-8036-11eb-9776-0a580a3c0c42",
-  "user_id": "e414116e-9957-11ea-b502-0a580a3c65d8",
-  "realm": "shares",
-  "operation": "create",
-  "data": {
-    "expires": "2021-03-15T17:52:06.936000+00:00",
-    "id": "ff93508c-8036-11eb-9776-0a580a3c0c42",
-    "object_id": "1cca7690-7e01-11eb-9145-0a580a3c0c42",
-    "allow_download": false,
-    "allow_download_proxy": false,
-    "allow_comments": true,
-    "metadata_views": [],
-    "object_type": "assets",
-    "date_created": "2021-03-08T17:52:06.936000+00:00",
-    "owner_id": "e414116e-9957-11ea-b502-0a580a3c65d8",
-    "allow_custom_actions": false,
-    "allow_approving_comments": true,
-    "allow_setting_approve_status": true,
-    "message": null,
-    "system_domain_id": "562b6dc8-9c3e-11e9-93c5-0a580a3d829b",
-    "allow_view_versions": true,
-    "allow_view_transcriptions": true
-  },
-  "request_id": "3d91fa8b50cddaaba1f4908858ffb6bb",
-  "event_type": "assets"
-}
-
-
 def send_shareinfo_toslack(request):
     input_data = request.get_json()
     #input_data = request
@@ -133,10 +103,10 @@ def send_shareinfo_toslack(request):
                     else:
                         return f'Successfully posted to slack'
 
-#check to see if recieved webhook is from Spotify's Iconik instance
+#check to see if recieved webhook is from your Iconik instance
 def check_validity(webhook):
     try:
-        if webhook['system_domain_id'] != "562b6dc8-9c3e-11e9-93c5-0a580a3d829b":
+        if webhook['system_domain_id'] != "INSERT SYSTEM DOMAIN ID HERE":
             return False
     except Exception as e:
         print(e)
