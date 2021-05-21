@@ -11,27 +11,14 @@ token = os.environ.get('token')
 headers = {'App-ID': app_id, 'Auth-Token': token}
 iconik_url = 'https://app.iconik.io/API/'
 
-job_create_payload = """{"custom_type":"Podcast Folder Structure",
-  "object_id":"$objectID",
-  "object_type":"collections",
-  "status":"STARTED",
-  "title":"Bulk collection metadata update for: $CollectionName",
-  "type":"CUSTOM"
-}"""
-
-job_update_payload = """{
-  "id": "426da862-655c-11eb-8f50-0a580a3f8d19",
-  "progress_processed": 30,
-}"""
-
 make_notification = """{
   "event_type": "finished","message_long": "Collection Metadata Updated!","message_short": "Collection Metadata Updated","object_id": "$job_id","object_type": "jobs","recipient_id": "$user_id","sender_id":"e414116e-9957-11ea-b502-0a580a3c65d8"}"""
 
 
-#check to see if recieved webhook is from Spotify's Iconik instance
+#check to see if recieved webhook is from your Iconik instance
 def check_validity(webhook):
     try:
-        if webhook['system_domain_id'] != "562b6dc8-9c3e-11e9-93c5-0a580a3d829b":
+        if webhook['system_domain_id'] != "INSERT SYSTEM DOMAIN ID HERE":
             return False
     except:
         return False
@@ -136,9 +123,6 @@ def metadata_values(webhook):
     if value['field_values']:
       #ignore any values that are null or otherwise empty, since we are issuing an overwrite
       if value['field_values'][0]['value']:
-        #print('value is', value)
-        #value['mode'] = 'overwrite'
-        #payload.append({"mode":"overwrite"})
         payload = value
 
         if not key in values_to_add.items():
