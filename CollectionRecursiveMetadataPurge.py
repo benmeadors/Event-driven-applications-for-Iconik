@@ -5,27 +5,8 @@ import os
 from flask import Response
 import time
 
-#app_id = os.environ.get('app_id')
-#token = os.environ.get('token')
-
-app_id = '66e0046e-630a-11eb-849c-0a580a3e4c9a'
-token = 'eyJhbGciOiJIUzI1NiIsImlhdCI6MTYxMjk3MDM5MiwiZXhwIjoxOTI4NDMwMzkyfQ.eyJpZCI6IjZjNDExMzEwLTZiYjMtMTFlYi04OTBiLTBhNTgwYTNjMGU0MSJ9.6k869nyRqPtavdRFu0bQ4I6rsK0U_fY434KIWvVZUmA'
-
-
-test_webhook = {
-  "user_id": "56ce67a8-9c3e-11e9-9d78-0a580a3f8e3a",
-  "system_domain_id": "562b6dc8-9c3e-11e9-93c5-0a580a3d829b",
-  "context": "COLLECTION",
-  "action_id": "1de08d34-7786-11eb-ba10-0a580a3e4b2b",
-  "asset_ids": [],
-  "collection_ids": [
-    "87cef4d0-8b08-11ea-a20b-0a580a3f8fa3"
-  ],
-  "saved_search_ids": [],
-  "metadata_view_id": None,
-  "metadata_values": None,
-  "date_created": "2021-02-25T16:26:51.140950"
-}
+app_id = os.environ.get('app_id')
+token = os.environ.get('token')
 
 
 headers = {'App-ID': app_id, 'Auth-Token': token}
@@ -48,10 +29,10 @@ make_notification = """{
   "event_type": "finished","message_long": "Project metadata purged!","message_short": "Project metadata purged","object_id": "$job_id","object_type": "jobs","recipient_id": "$user_id","sender_id":"e414116e-9957-11ea-b502-0a580a3c65d8"}"""
 
 
-#check to see if recieved webhook is from Spotify's Iconik instance
+#check to see if recieved webhook is from your Iconik instance
 def check_validity(webhook):
     try:
-        if webhook['system_domain_id'] != "562b6dc8-9c3e-11e9-93c5-0a580a3d829b":
+        if webhook['system_domain_id'] != "INSERT SYSTEM DOMAIN ID HERE":
             return False
     except:
         return False
@@ -88,7 +69,6 @@ def metadata_purge(webhook):
             all_sub_collections = collection_find(top_collection)
 
             print('found', len(all_sub_collections), 'collections underneath top level collection')
-            #print(all_sub_collections)
             finalexportsfolders = []              
             #attempt to purge metadata from each sub-collection and purge metadata from every asset in the collection
             print('getting all collections for exclusion')
@@ -348,5 +328,3 @@ def asset_find(collection_id, page_number):
 
             #return list of assets found 
             return asset_list
-
-metadata_purge(test_webhook)
