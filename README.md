@@ -5,7 +5,7 @@ These are event-driven serverless applications I've written in Python to automat
 This script is based on code that Mike Szumlinski wrote for a livestream hackathon. Shoutout to Mike for inspiring me to try my hand at programming again. This is the first Python app I wrote!
 This script recieves a webhook from Iconik, triggered anytime any user shares out an asset. It will gather information on who created the share, who the share was sent to, any recipient email addresses if they exist, and whether or not it was a generated shortlink. T
 
-### Build Podcast Folderstructure
+### Build Podcast Folder Structure
 
 At my current job, we have a specific folder structure we use to keep everything in a podcast project organized. Interestingly, Iconik's storage gateway will replicate a folder structure that it indexes on on-premise storage like a NAS share. Those collections that get made are 'mapped' and if something changes on the local storage, that will be reflected in Iconik. So sometimes we want to build that folder structure without having it be mapped. 
 
