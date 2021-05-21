@@ -21,20 +21,7 @@ collection_body = """{
 
 globalelementsfolders = ["01_Music", "02_VOX", "03_SFX", "04_Artwork", "05_Series_Socials"]
 singleepisodefolders = ["01_WIP_DAW_Session", "02_VOX", "03_SFX", "04_Music", "05_Video_Convert", "06_WIP_Prints"]
-#deliverableepisodefolders = ["01_Final_Mix", "02_Stems", "03_Socials", "04_Final_DAW_Session", "05_Transcripts", "06_Cue_Sheets", "07_Episodic_Artwork", "zOld"]
 
-job_create_payload = """{"custom_type":"Podcast Folder Structure",
-  "object_id":"$objectID",
-  "object_type":"collections",
-  "status":"STARTED",
-  "title":"Build Folder Structure",
-  "type":"CUSTOM"
-}"""
-
-job_update_payload = """{
-  "id": "426da862-655c-11eb-8f50-0a580a3f8d19",
-  "progress_processed": 30,
-}"""
 
 make_notification = """{
   "event_type": "finished","message_long": "Folder successfully Created!","message_short": "Folder successfully created!","object_id": "$job_id","object_type": "jobs","recipient_id": "$user_id","sender_id":"e414116e-9957-11ea-b502-0a580a3c65d8","status": "QUEUED","sub_object_id": "$toplevelcollection","sub_object_type": "collections"}"""
